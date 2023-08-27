@@ -2,7 +2,7 @@
 
 <p align="left">
   <p>
-    Aplicativos para estudos da API TMDB juntamente com o Framework React Native
+    Aplicativo para estudos da API TMDB juntamente com o Framework React Native
   </p>
 </p>
 
@@ -19,7 +19,7 @@
 
 ## Para Iniciar
 
-Intale as dependencias do projeto
+Instale as dependencias do projeto
 
 ### `npm install`
 
@@ -33,17 +33,17 @@ Inicie o app
 
 ### `npm start`
 
-Executa seu aplicativo em modo de desenvolvedor
+Execute seu aplicativo em modo de desenvolvedor
 
 Abra o com [Expo app](https://expo.io) no seu telefone para visualizá-lo. Ele será recarregado se você salvar as edições em seus arquivos e você verá erros de compilação e logs no terminal.
 
 #### `npm run ios`
 
-Like `npm start` / `yarn start`, mas também tenta abrir seu aplicativo no simulador iOS se você estiver em um Mac e o tiver instalado.
+Com `npm start` / `yarn start`, mas também tenta abrir seu aplicativo no simulador iOS se você estiver em um Mac e o tiver instalado.
 
 #### `npm run android`
 
-Com  `npm start` / `yarn start`, but also attempts to open your app on a connected Android device or emulator. Requires an installation of Android build tools (see [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) for detailed setup).
+Com  `npm start` / `yarn start`, mas também tenta abrir seu aplicativo em um dispositivo ou emulador Android conectado. Requer uma instalação de ferramentas de compilação do Android (veja em [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html) para mais deetalhes de ocnfigurações).
 
 <br />
 
