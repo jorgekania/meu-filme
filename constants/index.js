@@ -1,2 +1,2 @@
-export const apiKey = 'defd4050547d408ec800856dd1dbc9c9';
+export const apiKey = 'SUA_CHAVE_DE_API_AQUI';
 export const whichPlatform = Platform.OS === 'android';
