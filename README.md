@@ -2,7 +2,7 @@
 
 <p align="left">
   <p>
-    Aplicativos para estudos da API TMDB juntamente com o Framework React Native
+    Aplicativo para estudos da API TMDB juntamente com o Framework React Native
   </p>
 </p>
 
