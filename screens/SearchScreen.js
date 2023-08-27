@@ -21,10 +21,10 @@ export default function SearchScreen() {
             searchMovies({
                 query: search,
                 include_adult: false,
-                language: 'en-US',
+                language: 'pt-BR',
                 page: '1'
             }).then(data=>{
-                console.log('got search results');
+                console.log('em resultados da busca');
                 setLoading(false);
                 if(data && data.results) setResults(data.results);
             })
@@ -44,7 +44,7 @@ export default function SearchScreen() {
             className="mx-4 mb-3 flex-row justify-between items-center border border-neutral-500 rounded-full" >
             <TextInput 
                 onChangeText={handleTextDebounce} 
-                placeholder="Search Movie" 
+                placeholder="Buscar Filme" 
                 placeholderTextColor={'lightgray'} 
                 className="pb-1 pl-6 flex-1 text-base font-semibold text-white tracking-wider" 
             />
@@ -68,7 +68,7 @@ export default function SearchScreen() {
                     contentContainerStyle={{paddingHorizontal:15}}
                     className="space-y-3"
                 >
-                    <Text className="text-white font-semibold ml-1">Results ({results.length})</Text>
+                    <Text className="text-white font-semibold ml-1">Resultados ({results.length})</Text>
                     <View className="flex-row justify-between flex-wrap">
                         {
                             results.map((item, index)=>{
@@ -79,7 +79,6 @@ export default function SearchScreen() {
                                         <View className="space-y-2 mb-4">
                                             <Image 
                                                 source={{uri: image185(item.poster_path) || fallbackMoviePoster}} 
-                                                // source={require('../assets/images/moviePoster2.png')}
                                                 className="rounded-3xl" 
                                                 style={{ width: width*0.44, height: height*0.3}} 
                                             />

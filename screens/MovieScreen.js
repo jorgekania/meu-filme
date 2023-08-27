@@ -10,9 +10,9 @@ import MovieList from '../components/movieList';
 import { fallbackMoviePoster, fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image500 } from '../api/moviedb';
 import { styles, theme } from '../theme';
 import Loading from '../components/loading';
+import {whichPlatform} from "../constants";
 
-const ios = Platform.OS == 'ios';
-const topMargin = ios? '':' mt-3';
+const topMargin = whichPlatform? '':' mt-3';
 var {width, height} = Dimensions.get('window');
 
 export default function MovieScreen() {
@@ -35,7 +35,7 @@ export default function MovieScreen() {
 
   const getMovieDetials = async id=>{
     const data = await fetchMovieDetails(id);
-    console.log('got movie details');
+    console.log('em mais detalhes');
     setLoading(false);
     if(data) {
         setMovie({...movie, ...data});
@@ -43,7 +43,7 @@ export default function MovieScreen() {
   }
   const getMovieCredits = async id=>{
     const data = await fetchMovieCredits(id);
-    console.log('got movie credits')
+    console.log('em créditos')
     if(data && data.cast){
         setCast(data.cast);
     }
@@ -51,7 +51,7 @@ export default function MovieScreen() {
   }
   const getSimilarMovies = async id=>{
     const data = await fetchSimilarMovies(id);
-    console.log('got similar movies');
+    console.log('em veja mais');
     if(data && data.results){
         setSimilarMovies(data.results);
     }
@@ -79,7 +79,6 @@ export default function MovieScreen() {
             ):(
                 <View>  
                     <Image 
-                        // source={require('../assets/images/moviePoster2.png')} 
                         source={{uri: image500(movie.poster_path) || fallbackMoviePoster}}
                         style={{width, height: height*0.55}} 
                     />
@@ -150,7 +149,7 @@ export default function MovieScreen() {
       
       {/* similar movies section */}
       {
-        movie?.id && similarMovies.length>0 && <MovieList title={'Similar Movies'} hideSeeAll={true} data={similarMovies} />
+        movie?.id && similarMovies.length>0 && <MovieList title={'Veja também'} hideSeeAll={true} data={similarMovies} />
       }
 
     </ScrollView>

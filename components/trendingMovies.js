@@ -6,6 +6,12 @@ import { image500 } from '../api/moviedb';
 
 var {width, height} = Dimensions.get('window');
 
+/**
+ * Componente que exibe os filmes em destaque.
+ * 
+ * @component
+ * @param {Array} data - Os dados dos filmes em destaque.
+ */
 export default function TrendingMovies({data}) {
     const navigation = useNavigation();
 
@@ -15,14 +21,14 @@ export default function TrendingMovies({data}) {
   return (
     <View className="mb-8">
 
-      <Text className="text-white text-xl mx-4 mb-5">Trending</Text>
+      <Text className="text-white text-xl mx-4 mb-5">Lançamentos</Text>
       <Carousel
             data={data}
             renderItem={({item})=> <MovieCard handleClick={handleClick} item={item} />}
             firstItem={1}
-            // loop={true}
-            // inactiveSlideScale={0.86}
-            inactiveSlideOpacity={0.60}
+            loop={true}
+            inactiveSlideScale={0.86}
+            inactiveSlideOpacity={0.30}
             sliderWidth={width}
             itemWidth={width*0.62}
             slideStyle={{display: 'flex', alignItems: 'center'}}
@@ -31,6 +37,13 @@ export default function TrendingMovies({data}) {
   )
 }
 
+/**
+ * Componente que exibe um cartão de filme.
+ * 
+ * @component
+ * @param {Object} item - Os dados do filme.
+ * @param {Function} handleClick - Função chamada ao clicar no cartão.
+ */
 const MovieCard = ({item, handleClick})=>{
 
     return (

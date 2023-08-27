@@ -8,9 +8,10 @@ import MovieList from '../components/movieList';
 import { fallbackPersonImage, fetchPersonDetails, fetchPersonMovies, image185, image342, image500 } from '../api/moviedb';
 import Loading from '../components/loading';
 import { styles } from '../theme';
+import {whichPlatform} from "../constants";
+import {dateFormat} from "../helpers/dateFormat";
 
-const ios = Platform.OS == 'ios';
-const verticalMargin = ios? '':' my-3';
+const verticalMargin = whichPlatform? '':' my-3';
 var {width, height} = Dimensions.get('window');
 
 export default function PersonScreen() {
@@ -29,7 +30,7 @@ export default function PersonScreen() {
 
     const getPersonDetails = async id=>{
         const data = await fetchPersonDetails(id);
-        console.log('got person details');
+        console.log('em detalhes do ator');
         setLoading(false);
         if(data) {
             setPerson(data);
@@ -37,7 +38,7 @@ export default function PersonScreen() {
     }
     const getPersonMovies = async id=>{
         const data = await fetchPersonMovies(id);
-        console.log('got person movies')
+        console.log('em atores do filme')
         if(data && data.cast){
             setPersonMovies(data.cast);
         }
@@ -78,7 +79,6 @@ export default function PersonScreen() {
                         <View 
                         className="items-center rounded-full overflow-hidden h-72 w-72 border-neutral-500 border-2">
                             <Image 
-                                // source={require('../assets/images/castImage2.png')} 
                                 source={{uri: image342(person?.profile_path) || fallbackPersonImage}}
                                 style={{height: height*0.43, width: width*0.74}}
                             />
@@ -87,59 +87,51 @@ export default function PersonScreen() {
                 
                     <View className="mt-6">
                         <Text className="text-3xl text-white font-bold text-center">
-                            {/* Keanu Reeves */}
                             {person?.name}
                         </Text>
                         <Text className="text-neutral-500 text-base text-center">
                             {person?.place_of_birth}
-                            {/* Beirut, Lebanon */}
                         </Text>
                     </View>
         
                     <View className="mx-3 p-4 mt-6 flex-row justify-between items-center bg-neutral-700 rounded-full ">
                         <View className="border-r-2 border-r-neutral-400 px-2 items-center">
-                            <Text className="text-white font-semibold ">Gender</Text>
+                            <Text className="text-white font-semibold ">Gen.</Text>
                             <Text className="text-neutral-300 text-sm">
-                                {/* Male */}
                                 {
-                                    person?.gender==1? 'Female': 'Male'
+                                    person?.gender==1? 'Feminino': 'Masculino'
                                 }
                             </Text>
                         </View>
                         <View className="border-r-2 border-r-neutral-400 px-2 items-center">
-                            <Text className="text-white font-semibold">Birthday</Text>
+                            <Text className="text-white font-semibold">Aniv.</Text>
                             <Text className="text-neutral-300 text-sm">
-                                {/* 1964-09-02 */}
-                                {person?.birthday}
+                                {person?.birthday ? dateFormat(person?.birthday) : "-"}
                             </Text>
                         </View>
                         <View className="border-r-2 border-r-neutral-400 px-2 items-center">
-                            <Text className="text-white font-semibold">known for</Text>
-                            <Text className="text-neutral-300 text-sm">
-                                {/* Acting */}
+                            <Text className="text-white font-semibold">Como</Text>
+                            <Text className="text-neutral-300 text-sm">                                
                                 {person?.known_for_department}
                             </Text>
                         </View>
                         <View className="px-2 items-center">
-                            <Text className="text-white font-semibold">Popularity</Text>
+                            <Text className="text-white font-semibold">Popul.</Text>
                             <Text className="text-neutral-300 text-sm">
-                                {/* 84.23 % */}
                                 {person?.popularity?.toFixed(2)} %
                             </Text>
                         </View>
                         
                     </View>
                     <View className="my-6 mx-4 space-y-2">
-                        <Text className="text-white text-lg">Biography</Text>
+                        <Text className="text-white text-lg">Biografia</Text>
                         <Text className="text-neutral-400 tracking-wide">
                             {
                                 person?.biography? person.biography : 'N/A'
                             }
                         </Text>
                     </View>
-
-                    {/* person movies */}
-                    { person?.id && personMovies.length>0 && <MovieList title="Movies" hideSeeAll={true} data={personMovies} /> }
+                    { person?.id && personMovies.length>0 && <MovieList title="Filmes" hideSeeAll={true} data={personMovies} /> }
                 
                 </View>
             )

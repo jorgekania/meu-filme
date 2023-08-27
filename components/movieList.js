@@ -6,6 +6,12 @@ import { fallbackMoviePoster, image185, image342, poster342 } from '../api/movie
 import { styles } from '../theme';
 const {width, height} =  Dimensions.get('window');
 
+/**
+ * Componente reutilizável para exibir uma lista de filmes.
+ * @param {string} title - O título da lista de filmes.
+ * @param {boolean} hideSeeAll - Se true, oculta o link "Ver todos".
+ * @param {Array} data - Os dados da lista de filmes.
+ */
 export default function MovieList({title, hideSeeAll, data}) {
   const navigation = useNavigation();
   return (
@@ -16,7 +22,7 @@ export default function MovieList({title, hideSeeAll, data}) {
         {
           !hideSeeAll && (
             <TouchableOpacity>
-              <Text style={styles.text} className="text-lg">See All</Text>
+              <Text style={styles.text} className="text-lg">Ver todos</Text>
             </TouchableOpacity>
           )
         }
@@ -38,7 +44,6 @@ export default function MovieList({title, hideSeeAll, data}) {
                     >
                         <View className="space-y-1 mr-4">
                             <Image 
-                              // source={require('../assets/images/moviePoster2.png')}
                               source={{uri: image185(item.poster_path) || fallbackMoviePoster}} 
                               className="rounded-3xl" 
                               style={{ width: width*0.33, height: height*0.22}} 
